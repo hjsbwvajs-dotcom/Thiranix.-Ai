@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Thiranix.ai – Robots, AI and production</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Instrument+Sans:wght@400;500&display=swap">
+<style>
+:root{--bg:#f3f7f6;--surface:#fff;--line:#d3e0de;--ink:#0d1b1a;--muted:#536967;--teal:#0e6b66;--accent:#f2b705;--on-teal:#f3f7f6;--dk:#06100f;--dk2:#0c1d1b;--dkink:#e8f3f1;--dkmuted:#9db8b4;--glow:#2fb3aa;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#06100f;--surface:#0e1f1d;--line:#1c3430;--ink:#e8f3f1;--muted:#9db8b4;--teal:#2fb3aa;--on-teal:#06100f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#06100f;--surface:#0e1f1d;--line:#1c3430;--ink:#e8f3f1;--muted:#9db8b4;--teal:#2fb3aa;--on-teal:#06100f;color-scheme:dark}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:72px;height:auto}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.65 "Instrument Sans",system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:"Bricolage Grotesque",system-ui,sans-serif;margin:0;line-height:1.05;letter-spacing:-.02em}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 1.25rem}
+.nav{position:sticky;top:0;z-index:20;padding-top:env(safe-area-inset-top,0px);background:color-mix(in srgb,var(--bg) 80%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;justify-content:space-between;align-items:center;height:64px}
+.brand{display:flex;align-items:center;gap:.6rem;font:800 1.3rem "Bricolage Grotesque",sans-serif;text-decoration:none}
+nav{display:flex;align-items:center;gap:1.4rem}
+nav a{text-decoration:none;color:var(--muted);font-size:.95rem}
+nav a:hover{color:var(--ink)}
+nav a.cta{background:var(--teal);color:var(--on-teal);padding:.5rem 1.1rem;border-radius:99px;font-weight:500}
+.dk{background:var(--dk);color:var(--dkink);position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 75% 35%,rgba(47,179,170,.38),transparent 70%),radial-gradient(30% 30% at 20% 90%,rgba(242,183,5,.14),transparent 70%),linear-gradient(rgba(47,179,170,.08) 1px,transparent 1px) 0 0/52px 52px,linear-gradient(90deg,rgba(47,179,170,.08) 1px,transparent 1px) 0 0/52px 52px;-webkit-mask-image:linear-gradient(#000 70%,transparent);mask-image:linear-gradient(#000 70%,transparent)}
+.hero .wrap{position:relative;display:grid;grid-template-columns:1.15fr 1fr;gap:2rem;align-items:center;padding-top:4.5rem;padding-bottom:4rem}
+.pill{display:inline-block;border:1px solid rgba(47,179,170,.45);color:#7ff3ea;border-radius:99px;padding:.3rem .9rem;font-size:.85rem;margin-bottom:1.4rem}
+.hero h1{font-size:clamp(2.7rem,7.2vw,5.4rem);font-weight:800}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#f2b705,#7ff3ea);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{color:var(--dkmuted);font-size:1.2rem;max-width:34rem;margin:1.4rem 0 2rem}
+.btn{display:inline-block;background:var(--teal);color:var(--on-teal);padding:.85rem 1.5rem;border-radius:99px;font:500 1rem "Instrument Sans",sans-serif;text-decoration:none;border:2px solid var(--teal);cursor:pointer;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.amb{background:var(--accent);border-color:var(--accent);color:#1a1400}
+.btn.ghost{background:transparent;color:inherit;border-color:rgba(232,243,241,.4);margin-left:.5rem}
+.stats{display:flex;flex-wrap:wrap;gap:2.2rem;margin-top:2.6rem;padding-top:1.5rem;border-top:1px solid rgba(232,243,241,.14)}
+.stats b{display:block;font:700 1.6rem "Bricolage Grotesque",sans-serif}
+.stats span{color:var(--dkmuted);font-size:.9rem}
+.mark{width:100%;max-width:420px;justify-self:center;filter:drop-shadow(0 0 40px rgba(47,179,170,.35))}
+.mark .arm{transform-origin:150px 100px;animation:sway 4s ease-in-out infinite alternate}
+.mark .ring{transform-origin:150px 150px;animation:spin 40s linear infinite}
+.mark .ring.r2{animation-duration:60s;animation-direction:reverse}
+@keyframes sway{to{transform:rotate(-7deg)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+section{padding:5rem 0}
+.eye{display:block;color:var(--teal);font:500 .85rem "Instrument Sans",sans-serif;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.8rem}
+.dk .eye{color:#7ff3ea}
+h2{font-size:clamp(2rem,4.6vw,3.2rem);font-weight:800;max-width:36rem;margin-bottom:2.4rem}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:1.1rem;padding:1.7rem;transition:transform .25s,border-color .25s}
+.card:hover{transform:translateY(-5px);border-color:var(--teal)}
+.card h3{font-size:1.35rem;margin:1rem 0 .5rem}
+.card p{margin:0;color:var(--muted)}
+.ic{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:color-mix(in srgb,var(--teal) 15%,transparent)}
+.ic svg{width:24px;height:24px;fill:none;stroke:var(--teal);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tint{background:color-mix(in srgb,var(--teal) 7%,var(--bg))}
+.syn .wrap{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.syn svg.fig{width:100%;max-width:340px;justify-self:center}
+.syn p{color:var(--dkmuted);max-width:32rem}
+.chips{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.4rem 0}
+.chips span{border:1px solid rgba(47,179,170,.4);border-radius:99px;padding:.35rem .9rem;font-size:.9rem;color:#7ff3ea}
+.guide{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}
+details{background:var(--surface);border:1px solid var(--line);border-radius:1rem;padding:1.1rem 1.4rem;transition:border-color .25s}
+details:hover,details[open]{border-color:var(--teal)}
+summary{font:700 1.15rem "Bricolage Grotesque",sans-serif;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--teal);font-size:1.5rem;line-height:1}
+details[open] summary::after{content:"\2013"}
+details p{margin:.8rem 0 0;color:var(--muted)}
+.fac{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+.route{display:flex;align-items:center;gap:.7rem;margin:0 0 1.6rem}
+.route i{flex:1;border-top:2px dashed var(--teal)}
+.route b{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:.4rem 1rem;font-weight:500;font-size:.95rem}
+.fac p{color:var(--muted);margin:0}
+.step{position:relative;padding:0 0 1.6rem 2rem;border-left:2px solid var(--line);margin-left:.5rem}
+.step::before{content:"";position:absolute;left:-7px;top:.35rem;width:12px;height:12px;border-radius:50%;background:var(--accent)}
+.step b{display:block;font:700 1.2rem "Bricolage Grotesque",sans-serif}
+.step span{color:var(--muted)}
+.cta-box{background:linear-gradient(135deg,#0e6b66,#06302d);color:#e8f3f1;border-radius:1.6rem;padding:clamp(2rem,6vw,4rem)}
+.cta-box h2{margin-bottom:1rem}
+.cta-box p{color:#b7d3cf;max-width:34rem;margin:0 0 1.6rem}
+.em{font:700 clamp(1.05rem,3.6vw,1.6rem) "Bricolage Grotesque",sans-serif;word-break:break-all;margin:0 0 1.6rem;color:#fff}
+footer{padding:2rem 0 calc(2rem + env(safe-area-inset-bottom,0px));color:var(--muted);font-size:.92rem}
+.js .rv{opacity:0;transform:translateY(26px);transition:opacity .7s,transform .7s}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.mark .arm,.mark .ring{animation:none}.js .rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+@media (max-width:820px){.hero .wrap,.syn .wrap,.fac,.grid3,.guide{grid-template-columns:1fr}.hero .wrap{padding-top:2rem}.mark{max-width:260px;order:-1;justify-self:start}nav a:not(.cta){display:none}section{padding:3.5rem 0}.btn.ghost{margin:.6rem 0 0}}
+</style>
+</head>
+<body>
+<header class="nav"><div class="wrap">
+  <a class="brand" href="#top" aria-label="Thiranix.ai home">
+    <svg width="32" height="32" viewBox="0 0 300 300" aria-hidden="true"><polygon points="150,12 270,81 270,219 150,288 30,219 30,81" fill="var(--teal)"/><path d="M88 100 L212 100 M150 100 L150 220" fill="none" stroke="var(--on-teal)" stroke-width="26" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Thiranix.ai
+  </a>
+  <nav><a href="#what">What we do</a><a href="#products">Products</a><a href="#robots">Robots</a><a href="#factory">Factory</a><a class="cta" href="#contact">Contact</a></nav>
+</div></header>
+
+<main id="top">
+<div class="dk hero"><div class="wrap">
+  <div>
+    <span class="pill">Robotics · AI · Production</span>
+    <h1>Robots and AI, <em>built under one roof.</em></h1>
+    <p class="lead">Thiranix.ai designs intelligent robots and the software that runs them, then manufactures them ourselves.</p>
+    <a class="btn amb" href="#contact">Talk to us</a><a class="btn ghost" href="#factory">See our factory plan</a>
+    <div class="stats">
+      <div><b>Madurai</b><span>Headquarters, India</span></div>
+      <div><b>Germany</b><span>Factory, planned</span></div>
+      <div><b>3</b><span>Product lines</span></div>
+    </div>
+  </div>
+  <svg class="mark" viewBox="-30 -30 360 360" role="img" aria-label="Thiranix.ai logo: a hexagon with a robotic arm shaped like the letter T">
+    <circle class="ring" cx="150" cy="150" r="165" fill="none" stroke="#2fb3aa" stroke-opacity=".5" stroke-dasharray="3 10"/>
+    <circle class="ring r2" cx="150" cy="150" r="146" fill="none" stroke="#f2b705" stroke-opacity=".4" stroke-dasharray="40 24"/>
+    <polygon points="150,12 270,81 270,219 150,288 30,219 30,81" fill="#2fb3aa"/>
+    <path d="M150 100 L150 225" fill="none" stroke="#06100f" stroke-width="22" stroke-linecap="round"/>
+    <g class="arm"><path d="M90 100 L210 100" fill="none" stroke="#06100f" stroke-width="22" stroke-linecap="round"/>
+    <path d="M210 100 L228 78 M210 100 L236 96" stroke="#f2b705" stroke-width="9" stroke-linecap="round"/></g>
+    <circle cx="150" cy="100" r="17" fill="#f2b705"/>
+  </svg>
+</div></div>
+</main>
+
+<section id="what"><div class="wrap">
+  <span class="eye rv">01 — What we do</span><h2 class="rv">Three things, done together</h2>
+  <div class="grid3">
+    <div class="card rv"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div><h3>Robotics</h3><p>Robotic arms and machines designed for real work, from the first sketch to the finished unit.</p></div>
+    <div class="card rv"><div class="ic"><svg viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 2v4M15 2v4M9 18v4M15 18v4M2 9h4M2 15h4M18 9h4M18 15h4"/></svg></div><h3>AI</h3><p>Vision and control software that lets our robots see, decide and adapt on the job.</p></div>
+    <div class="card rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21V11l6 4v-4l6 4V6h6v15z"/></svg></div><h3>Production</h3><p>Our own manufacturing, so what we design is what we can build, test and ship.</p></div>
+  </div>
+</div></section>
+
+<section id="products" class="tint"><div class="wrap">
+  <span class="eye rv">02 — Products</span><h2 class="rv">Our product lines</h2>
+  <div class="grid3">
+    <div class="card rv"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M12 8v8M8 12h8"/></svg></div><h3>Medical-aided robots</h3><p>Robots that assist doctors, nurses and patients, from surgical assistance and rehabilitation to patient lifting and hospital logistics.</p></div>
+    <div class="card rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg></div><h3>Military robots</h3><p>Rugged ground robots for reconnaissance, bomb disposal and work in hazardous areas, keeping people out of harm’s way.</p></div>
+    <div class="card rv"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 8l9-5 9 5v8l-9 5-9-5zM3 8l9 5 9-5M12 13v8"/></svg></div><h3>Troop support robots</h3><p>Robots that carry loads, move supplies and help evacuate casualties, so troops can move lighter and faster.</p></div>
+  </div>
+</div></section>
+
+<section class="dk syn" id="synthezoid"><div class="wrap">
+  <svg viewBox="0 0 300 420" role="img" aria-label="Concept illustration of the Thiranix.ai synthezoid, a realistic humanoid AI robot" class="fig rv">
+<defs>
+<linearGradient id="m" x1="0" x2="1"><stop offset="0" stop-color="#eef3f4"/><stop offset=".5" stop-color="#b9c6ca"/><stop offset="1" stop-color="#6d8084"/></linearGradient>
+<linearGradient id="d" x1="0" x2="1"><stop offset="0" stop-color="#3a4a4d"/><stop offset="1" stop-color="#1a2527"/></linearGradient>
+<radialGradient id="c"><stop offset="0" stop-color="#fff3b0"/><stop offset=".55" stop-color="#f2b705"/><stop offset="1" stop-color="#f2b705" stop-opacity="0"/></radialGradient>
+<radialGradient id="bg"><stop offset="0" stop-color="#2fb3aa" stop-opacity=".35"/><stop offset="1" stop-color="#2fb3aa" stop-opacity="0"/></radialGradient>
+<filter id="lit" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur in="SourceAlpha" stdDeviation="3" result="b"/><feSpecularLighting in="b" surfaceScale="6" specularConstant=".9" specularExponent="22" lighting-color="#fff" result="s"><fePointLight x="70" y="-40" z="170"/></feSpecularLighting><feComposite in="s" in2="SourceAlpha" operator="in" result="s2"/><feComposite in="SourceGraphic" in2="s2" operator="arithmetic" k1="0" k2="1" k3="1" k4="0"/></filter></defs>
+<circle cx="150" cy="210" r="190" fill="url(#bg)"/>
+<ellipse cx="150" cy="410" rx="85" ry="7" fill="#000" opacity=".18"/><g filter="url(#lit)">
+<path d="M112 252 L146 252 L142 330 L116 330 Z" fill="url(#m)"/><circle cx="129" cy="334" r="11" fill="url(#d)"/><path d="M116 342 L142 342 L140 395 L118 395 Z" fill="url(#m)"/><path d="M114 395 L142 395 L150 408 L108 408 Z" fill="url(#d)"/>
+<path d="M188 252 L154 252 L158 330 L184 330 Z" fill="url(#m)"/><circle cx="171" cy="334" r="11" fill="url(#d)"/><path d="M184 342 L158 342 L160 395 L182 395 Z" fill="url(#m)"/><path d="M186 395 L158 395 L150 408 L192 408 Z" fill="url(#d)"/>
+<path d="M104 238 Q150 262 196 238 L190 262 Q150 280 110 262 Z" fill="url(#d)"/>
+<path d="M92 128 Q150 108 208 128 L198 245 Q150 262 102 245 Z" fill="url(#m)"/>
+<path d="M150 122 L150 250 M112 170 Q150 190 188 170" stroke="#4d5f63" stroke-width="2" fill="none" opacity=".6"/>
+<circle cx="150" cy="190" r="30" fill="url(#c)"/><circle cx="150" cy="190" r="10" fill="#fff3b0"/>
+<circle cx="88" cy="136" r="18" fill="url(#d)"/><circle cx="212" cy="136" r="18" fill="url(#d)"/>
+<path d="M76 142 L98 146 L92 215 L70 212 Z" fill="url(#m)"/><circle cx="81" cy="218" r="10" fill="url(#d)"/><path d="M70 226 L92 226 L88 290 L74 290 Z" fill="url(#m)"/><path d="M72 290 L90 290 L92 312 L70 312 Z" fill="url(#d)"/>
+<path d="M224 142 L202 146 L208 215 L230 212 Z" fill="url(#m)"/><circle cx="219" cy="218" r="10" fill="url(#d)"/><path d="M230 226 L208 226 L212 290 L226 290 Z" fill="url(#m)"/><path d="M228 290 L210 290 L208 312 L230 312 Z" fill="url(#d)"/>
+<rect x="138" y="100" width="24" height="30" fill="url(#d)"/>
+<path d="M150 20 C190 20 200 55 196 80 C192 108 172 122 150 122 C128 122 108 108 104 80 C100 55 110 20 150 20 Z" fill="url(#m)"/>
+<path d="M114 62 Q150 52 186 62 L184 80 Q150 90 116 80 Z" fill="url(#d)"/><circle cx="136" cy="70" r="4" fill="#7ff3ea"/><circle cx="164" cy="70" r="4" fill="#7ff3ea"/>
+<path d="M150 34 L156 46 L150 54 L144 46 Z" fill="#f2b705"/><path d="M150 84 L146 98 L154 98 Z" fill="#8fa2a7"/><path d="M138 108 Q150 112 162 108" stroke="#4d5f63" stroke-width="2" fill="none"/>
+<path d="M120 40 Q112 70 116 96" stroke="#fff" stroke-width="4" fill="none" opacity=".5" stroke-linecap="round"/>
+<path d="M108 215 Q150 228 192 215 M110 232 Q150 244 190 232" stroke="#4d5f63" stroke-width="2" fill="none" opacity=".5"/><circle cx="136" cy="70" r="9" fill="#7ff3ea" opacity=".25"/><circle cx="164" cy="70" r="9" fill="#7ff3ea" opacity=".25"/></g></svg>
+  <div class="rv">
+    <span class="eye">03 — Flagship concept</span>
+    <h2>Meet our synthezoid</h2>
+    <p>A synthetic humanoid with an AI core, designed to work alongside people in hospitals, support missions and industry.</p>
+    <div class="chips"><span>AI core</span><span>Vision</span><span>Human-safe motion</span><span>Concept illustration</span></div>
+  </div>
+</div></section>
+
+<section id="robots"><div class="wrap">
+  <span class="eye rv">04 — Learn</span><h2 class="rv">Robots explained</h2>
+  <div class="guide rv">
+    <details><summary>Industrial robot arms</summary><p>Multi-jointed arms bolted to a factory floor. They weld, paint, pick and assemble with speed and repeatable accuracy, and power most car and electronics lines.</p></details>
+    <details><summary>Collaborative robots (cobots)</summary><p>Smaller arms built to work next to people without safety cages, using force sensing to stop on contact. Popular with small factories that need flexible automation.</p></details>
+    <details><summary>Mobile robots (AGVs and AMRs)</summary><p>Wheeled robots that carry goods around warehouses and plants. AGVs follow fixed routes, while AMRs use sensors and AI to find their own way.</p></details>
+    <details><summary>Humanoid robots</summary><p>Robots with a human-like body, designed to work in spaces built for people. They are still an active research area, with early use in logistics and inspection.</p></details>
+    <details><summary>Aerial robots (drones)</summary><p>Flying robots used for surveying, crop monitoring, delivery and inspecting hard-to-reach structures such as towers and pipelines.</p></details>
+    <details><summary>Medical robots</summary><p>Systems that help surgeons operate with fine precision through small incisions, plus robots for rehabilitation, lab automation and hospital logistics.</p></details>
+    <details><summary>Agricultural robots</summary><p>Machines that plant, weed, spray and harvest. Vision-based AI lets them tell crops from weeds and treat each plant individually.</p></details>
+    <details><summary>Service robots</summary><p>Robots that help in everyday settings, such as vacuum cleaners at home, delivery robots in hotels and guide robots in airports.</p></details>
+  </div>
+</div></section>
+
+<section id="factory" class="tint"><div class="wrap fac">
+  <div class="rv">
+    <span class="eye">05 — Where we build</span>
+    <h2>Headquartered in Madurai, factory planned in Germany</h2>
+    <div class="route"><b>Madurai, India</b><i></i><b>Germany</b></div>
+    <p>Thiranix.ai is headquartered in Madurai, India. We are planning a robot factory in Germany, where robots will be assembled and tested close to the engineers who design them. That means faster fixes and tighter quality.</p>
+  </div>
+  <div class="rv" style="padding-top:2rem">
+    <div class="step"><b>Design and software</b><span>Engineering of the robots and their AI, led from Madurai.</span></div>
+    <div class="step"><b>Assembly and testing</b><span>Every unit to be built and checked at our German factory.</span></div>
+    <div class="step"><b>Delivery and support</b><span>Robots shipped with ongoing service.</span></div>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap"><div class="cta-box rv">
+  <h2>Have a robot problem to solve?</h2>
+  <p>Tell us what you need automated. We will reply with what is possible and what it takes. Thiranix.ai was founded by Krishna Moorthy Abishek.</p>
+  <div class="em" id="em">thiranix.ai.company.pvt@gmail.com</div>
+  <a class="btn amb" href="mailto:thiranix.ai.company.pvt@gmail.com" target="_blank" rel="noopener">Email Thiranix.ai</a><button class="btn ghost" id="cp" type="button">Copy email</button>
+</div></div></section>
+
+<div class="wrap"><footer>© 2035 Thiranix.ai. Founded by Krishna Moorthy Abishek. Headquartered in Madurai, India. Factory planned in Germany.</footer></div>
+<script>
+document.documentElement.classList.add('js');
+try{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});document.querySelectorAll('.rv').forEach(function(n){io.observe(n)})}catch(e){document.querySelectorAll('.rv').forEach(function(n){n.classList.add('in')})}
+document.getElementById('cp').addEventListener('click',function(){var b=this,el=document.getElementById('em'),t=el.textContent;
+function done(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy email'},2000)}
+function fb(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy');done()}catch(e){b.textContent='Select the email above'}}
+try{navigator.clipboard.writeText(t).then(done,fb)}catch(e){fb()}});
+</script>
+</body>
+</html>
